@@ -8,29 +8,42 @@ const Ship = mongoose.model(
       required: true,
     },
     length: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '0',
     },
-    rate: {
-      type: Number,
-      default: 0,
+    price: {
+      type: String,
+      default: '0',
     },
     shipYard: {
       type: String,
       default: "",
     },
     built: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '0',
     },
     trefit: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '0',
+    },
+    region:{
+        type:String,
+        default:''
+    },
+    cabin:{
+        type:String,
+        default:'0'
+    },
+    guest:{
+        type:String,
+        default:'0'
     },
     userId: { 
         type: mongoose.Schema.ObjectId, 
         ref: "User" 
     },
+
   })
 );
 

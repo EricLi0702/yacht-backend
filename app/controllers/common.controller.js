@@ -20,7 +20,7 @@ exports.getAllYacht = async (req, res) => {
 
 exports.getCharterYacht = (req, res) => {
     try{
-
+        
     }catch(err){
         return res.status(400).json({
             error:"bad request",
@@ -31,8 +31,8 @@ exports.getCharterYacht = (req, res) => {
 
 exports.addYacht = async (req, res) => {
     try{
-        const {name, length, rate, shipYard, built, trefit} = req.body
-        const yachtSchema = new shipModel({"name":name, "length":length, "rate":rate, "shipYard":shipYard, "built":built, "trefit":trefit,"userId":req.userId})
+        const {name, length, price, shipYard, built, trefit} = req.body
+        const yachtSchema = new shipModel({"name":name, "length":length, "price":price, "shipYard":shipYard, "built":built, "trefit":trefit,"userId":req.userId})
         await yachtSchema.save()
         return res.status(201).json({
             data:yachtSchema,
