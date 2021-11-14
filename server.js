@@ -55,17 +55,17 @@ function initial() {
 
         console.log("added 'owner' to roles collection");
       });
-
     }
   });
 }
 
 // simple route
-app.get("/", (req, res) => {
+app.get("/api", (req, res) => {
   res.json({ message: "Welcome to Yacht application." });
 });
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
+require('./app/routes/common.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
