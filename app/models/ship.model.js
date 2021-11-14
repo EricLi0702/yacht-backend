@@ -27,6 +27,10 @@ const Ship = mongoose.model(
       type: Number,
       default: 0,
     },
+    userId: { 
+        type: mongoose.Schema.ObjectId, 
+        ref: "User" 
+    },
   })
 );
 
