@@ -10,9 +10,9 @@ module.exports = function(app){
         next();
     });
 
-    app.get('/api/yacht', [authJwt.verifyToken], controller.getAllYacht);
+    app.get('/api/yacht',controller.getAllYacht);
 
-    app.get('/api/chartYacht', [authJwt.verifyToken], controller.getCharterYacht);
+    app.get('/api/chartYacht', controller.getCharterYacht);
 
     app.post('/api/yacht', [authJwt.verifyToken, authJwt.isOwner], controller.addYacht);
 

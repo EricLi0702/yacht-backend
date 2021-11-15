@@ -51,7 +51,7 @@ isOwner = (req, res, next) => {
   });
 };
 
-isOwner = (req, res, next) => {
+isAdmin = (req, res, next) => {
   User.findById(req.userId).exec((err, user) => {
     if (err) {
       res.status(500).send({ message: err });

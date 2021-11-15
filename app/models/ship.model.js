@@ -12,8 +12,12 @@ const Ship = mongoose.model(
       default: '0',
     },
     price: {
-      type: String,
-      default: '0',
+      type: Number,
+      default: 0,
+    },
+    type:{
+      type:String,
+      default:''
     },
     shipYard: {
       type: String,
@@ -43,6 +47,11 @@ const Ship = mongoose.model(
         type: mongoose.Schema.ObjectId, 
         ref: "User" 
     },
+    images:[
+      {
+        type:String
+      }
+    ]
 
   })
 );
