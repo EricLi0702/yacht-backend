@@ -36,8 +36,8 @@ const Ship = mongoose.model(
         default:''
     },
     cabin:{
-        type:String,
-        default:'0'
+        type:Number,
+        default:0
     },
     guest:{
         type:String,
@@ -51,7 +51,14 @@ const Ship = mongoose.model(
       {
         type:String
       }
-    ]
+    ],
+    startDate:{
+      type:Date,
+
+    },
+    endDate:{
+      type:Date
+    }
 
   })
 );

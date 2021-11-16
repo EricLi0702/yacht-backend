@@ -20,23 +20,27 @@ exports.getAllYacht = async (req, res) => {
 exports.getCharterYacht = async (req, res) => {
     try{
         console.log('=====',req.query)
-        const {priceRange, yachtName, yachtLocation, cabin, guest} = req.query
+        const {priceRange, yachtType, yachtLocation, cabin, season} = req.query
         
         const userId = req.userId
         const findObj = {"price":{$gt:parseInt(priceRange[0]), $lt:parseInt(priceRange[1])}}
         
-        if(yachtName != ''){
-            findObj.type = yachtName
+        if(yachtType != ''){
+            findObj.type = yachtType
         }
         if(yachtLocation != ''){
             findObj.region = yachtLocation
         }
         if(cabin != ''){
-            findObj.cabin = cabin
+            if(cabin != '12+'){
+                findObj.cabin = parseInt(cabin)
+            }else{
+                findObj.cabin = {$gt:12}
+            }
         }
-        if(guest != ''){
-            findObj.guest = guest
-        }
+        // if(guest != ''){
+        //     findObj.guest = guest
+        // }
         console.log('-------',findObj)
         const data = await shipModel.find(findObj)
         console.log('charter data: ',data)

@@ -3,8 +3,11 @@ const controller = require('../controllers/common.controller');
 
 module.exports = function(app){
     app.use(function(req,res,next){
+        res.header("Access-Control-Allow-Origin", "*");
+
         res.header(
             "Access-Controll-Allow-Headers",
+            "Access-Control-Allow-Origin",
             "authorization, Origin, Content-type, Accept"
         );
         next();
