@@ -8,8 +8,8 @@ const Ship = mongoose.model(
       required: true,
     },
     length: {
-      type: String,
-      default: '0',
+      type: Number,
+      default: 0,
     },
     price: {
       type: Number,
@@ -24,12 +24,12 @@ const Ship = mongoose.model(
       default: "",
     },
     built: {
-      type: String,
-      default: '0',
+      type: Number,
+      default: 0,
     },
     trefit: {
-      type: String,
-      default: '0',
+      type: Number,
+      default: 0,
     },
     region:{
         type:String,
@@ -40,8 +40,8 @@ const Ship = mongoose.model(
         default:0
     },
     guest:{
-        type:String,
-        default:'0'
+        type:Number,
+        default:0
     },
     userId: { 
         type: mongoose.Schema.ObjectId, 
@@ -49,17 +49,16 @@ const Ship = mongoose.model(
     },
     images:[
       {
-        type:String
+        type:String,
+        default:'/'
       }
     ],
-    startDate:{
-      type:Date,
-
-    },
-    endDate:{
-      type:Date
-    }
-
+    date:[
+      {
+        type:String,
+        default:'0-0-0'
+      }
+    ]
   })
 );
 

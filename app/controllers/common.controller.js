@@ -20,7 +20,7 @@ exports.getAllYacht = async (req, res) => {
 exports.getCharterYacht = async (req, res) => {
     try{
         console.log('=====',req.query)
-        const {priceRange, yachtType, yachtLocation, cabin, season} = req.query
+        const {priceRange, yachtType, yachtLocation, cabin, when} = req.query
         
         const userId = req.userId
         const findObj = {"price":{$gt:parseInt(priceRange[0]), $lt:parseInt(priceRange[1])}}
@@ -38,12 +38,15 @@ exports.getCharterYacht = async (req, res) => {
                 findObj.cabin = {$gt:12}
             }
         }
+        if(when != '0-0-0'){
+            findObj.date = {$in : [when]}
+        }
         // if(guest != ''){
         //     findObj.guest = guest
         // }
         console.log('-------',findObj)
         const data = await shipModel.find(findObj)
-        console.log('charter data: ',data)
+        // console.log('charter data: ',data)
         return res.status(200).json({
             data:data,
             success:true,
@@ -59,8 +62,8 @@ exports.getCharterYacht = async (req, res) => {
 
 exports.addYacht = async (req, res) => {
     try{
-        const {name, length, price, shipYard, built, trefit,region, cabin, guest, images} = req.body
-        const yachtSchema = new shipModel({"name":name, "length":length, "price":price, "shipYard":shipYard, "built":built, "trefit":trefit, "region":region, "cabin":cabin, "guest":guest, "images":images, "userId":req.userId})
+        const {name, length, price, type, shipYard, built, trefit,region, cabin, guest, images, date} = req.body
+        const yachtSchema = new shipModel({"name":name, "length":length, "price":price, "type":type, "shipYard":shipYard, "built":built, "trefit":trefit, "region":region, "cabin":cabin, "guest":guest, "images":images, "date":date, "userId":req.userId})
         await yachtSchema.save((err, ship) => {
             if(err){
                 res.status(500).send({message: err});
