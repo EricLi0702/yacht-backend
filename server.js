@@ -21,9 +21,9 @@ const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
-  .connect(`mongodb://newadmin:password@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+  .connect(`mongodb://newadmin:password@${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}/?authSource=admin&readPreference=primary&directConnection=true&ssl=false`, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => {
     console.log("Successfully connect to MongoDB.");
